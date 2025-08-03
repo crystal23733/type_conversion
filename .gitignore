@@ -1,3 +1,5 @@
 .vscode/
+/two.dSYM
 one
+two
 *.exe
