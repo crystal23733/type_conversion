@@ -23,10 +23,13 @@ class Item {
     string name;
 };
 
+/**
+ * 주석은 명시적 형 변환 코드
+ */
 int main() {
   Item i1(1, "Stone");
-  int inum = i1;
-  string iname = i1;
+  int inum = i1; // int inum = (int)i1;
+  string iname = i1; // string iname = (string)i1;
 
   cout << inum << endl;
   cout << iname << endl;
