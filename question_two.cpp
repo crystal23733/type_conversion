@@ -17,15 +17,45 @@ class Polygon {
                 this -> points[i] = points[i];
             }
         }
-        // 복사 생성자 구현
-        // 이동 생성자 구현
+        
+        Polygon(const Polygon &rhs) {
+            nPoints = rhs.nPoints;
+            this->points = new Point[nPoints];
+            for (int i = 0; i < nPoints; i++) {
+                this->points[i] = rhs.points[i];
+            }
+        }
+        Polygon(Polygon &&rhs) {
+            nPoints = rhs.nPoints;
+            points = rhs.points;
+            rhs.points = NULL;
+        }
         
         ~Polygon() {
             delete[] points;
         }
 
-        // 복사 대입 연산자 구현
-        // 이동 대입 연산자 구현
+        Polygon &operator=(const Polygon &rhs) {
+            if (this != &rhs) {
+                nPoints = rhs.nPoints;
+                this->points = new Point[nPoints];
+                for (int i = 0; i < nPoints; i++) {
+                    this->points[i] = rhs.points[i];
+                }
+            }
+            return *this;
+        }
+
+        Polygon &operator=(Polygon &&rhs) {
+            if (this != &rhs) {
+                delete[] points;
+                nPoints = rhs.nPoints;
+                points = rhs.points;
+                rhs.points = nullptr;
+                rhs.nPoints = 0;
+            }
+            return *this;
+        }
 
         int GetNPoints() const {
             return nPoints;
